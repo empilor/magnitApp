@@ -1,0 +1,16 @@
+do $$
+<<prepare_test_table>>
+declare
+row_cnt integer := 0;
+begin
+
+select count(1)
+into row_cnt
+from "TEST";
+raise notice 'Row count is %', row_cnt;
+
+if row_cnt > 0 then
+EXECUTE 'TRUNCATE "TEST"';
+end if;
+
+end prepare_test_table $$;
