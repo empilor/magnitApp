@@ -3,6 +3,7 @@ package com.magnit.magnitapp.app;
 import com.magnit.magnitapp.jdbc.JdbcUtilsImpl;
 import com.magnit.magnitapp.jdbc.JdbcUtils;
 import com.magnit.magnitapp.xml.EntriesXmlProcessor;
+import com.magnit.magnitapp.xml.EntriesXmlProcessorImpl;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -17,15 +18,17 @@ public class MagnitXmlApplication {
     private JdbcUtils jdbcUtils;
     private EntriesXmlProcessor processor;
 
-    public void processEntries() throws SQLException, JAXBException, IOException {
-        List<Integer> entriesList = getJdbcUtils().getEntriesList();
-        getProcessor().storeEntriesXml(entriesList);
+    public void processEntries(int n) throws SQLException, JAXBException, IOException {
+        if(n <= 0) {
+            throw new IllegalArgumentException("N value can't be less than 0");
+        }
+        //get entries from TEST table
+        List<Integer> entriesList = jdbcUtils.getEntriesList(n);
+        //process List of entries to xml file
+        processor.storeEntriesXml(entriesList);
     }
 
     public JdbcUtils getJdbcUtils() {
-        if (jdbcUtils == null) {
-            return new JdbcUtilsImpl();
-        }
         return jdbcUtils;
     }
 
@@ -34,9 +37,6 @@ public class MagnitXmlApplication {
     }
 
     public EntriesXmlProcessor getProcessor() {
-        if (processor == null) {
-            return new EntriesXmlProcessor();
-        }
         return processor;
     }
 

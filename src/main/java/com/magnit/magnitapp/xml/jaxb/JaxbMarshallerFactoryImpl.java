@@ -5,9 +5,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 public class JaxbMarshallerFactoryImpl implements JaxbMarshallerFactory {
-    public JaxbMarshallerFactoryImpl() {
-    }
-
     @Override
     public <T> Marshaller getJaxbMarshaller(Class<T> clazz) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(clazz);
