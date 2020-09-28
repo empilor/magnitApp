@@ -2,6 +2,7 @@ package com.magnit.magnitapp;
 
 import com.magnit.magnitapp.app.MagnitXmlApplication;
 import com.magnit.magnitapp.app.MagnitXmlApplicationFactory;
+import com.magnit.magnitapp.app.MagnitXmlApplicationFactoryImpl;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,7 +14,8 @@ public class MagnitConsoleApplication {
             Scanner scan = new Scanner(System.in);
             int n = scan.nextInt();
 
-            MagnitXmlApplication app = MagnitXmlApplicationFactory.buildMagnitXmlApplication();
+            MagnitXmlApplicationFactory factory = new MagnitXmlApplicationFactoryImpl();
+            MagnitXmlApplication app = factory.buildMagnitXmlApplication();
             app.processEntries(n);
         } catch (InputMismatchException ex) {
             System.out.println("N should be an integer greater than 0");
