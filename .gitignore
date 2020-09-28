@@ -22,5 +22,5 @@
 log/
 target/
 
-# App Intermediate Files
-src/main/resources/xml/
+# Application Intermediate files
+*.xml
