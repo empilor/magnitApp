@@ -22,5 +22,6 @@
 log/
 target/
 
-# Application Intermediate files
+#App Intermediate files
 *.xml
+!pom.xml
